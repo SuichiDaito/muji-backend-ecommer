@@ -1,9 +1,12 @@
 const express = require("express");
-const { getHomePage, getAbc } = require("../controllers/homeController");
+const { getAccount, getAbc } = require("../controllers/homeController");
+const { loginUser } = require("../controllers/usersController/loginUser");
 const router = express.Router();
 
-router.get("/", getHomePage);
+router.get("/", getAccount);
 
 router.get("/test", getAbc);
+
+router.post("/login", loginUser);
 
 module.exports = router;
