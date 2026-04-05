@@ -1,23 +1,24 @@
+import { LoginRequest } from "../models/authModel";
 import authServices from "../services/authServices";
+import { Errors } from "../errors/error-factory";
 
 class AuthController {
     async login(req: any, res: any) {
         try {
-            const { username } = req.body;
-            console.log("show the username", username);
+            const body: LoginRequest = req.body;
 
-            if (!username) {
-                return res.status(400).json({
-                    message: "Username required!"
-                });
+            if (!body.username) {
+                return Errors.requiredUsername;
             }
 
-            const user = await authServices.login(username);
+            const user = await authServices.login(body);
 
             if (!user) {
-                return res.status(401).json({
-                    message: "Invalid username"
-                });
+                return Errors.requiredUsername;
+            }
+
+            if (user == null) {
+                return Errors.invalidUsername;
             }
 
             res.status(200).json({
@@ -25,10 +26,7 @@ class AuthController {
                 data: user
             });
         } catch (err) {
-            console.log("show the error", err);
-            res.status(500).json({
-                message: err
-            });
+            throw Errors.unknownError;
         }
 
     }

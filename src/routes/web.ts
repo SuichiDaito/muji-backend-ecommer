@@ -9,6 +9,4 @@ router.get("/", authController.connect);
 
 router.post("/login", authController.login);
 
-// router.post("/login", (req: any, res: any) => authController.login(req, res));
-
 export default router;
