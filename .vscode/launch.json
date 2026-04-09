@@ -1,0 +1,24 @@
+// {
+//     "configurations": [
+//         {
+//             "type": "msedge",
+//             "name": "http://localhost:8081/login",
+//             "request": "launch",
+//             "url": "http://localhost:8081/login"
+//         }
+//     ]
+// }
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach Nodemon",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "restart": true,
+            "protocol": "inspector",
+            "timeout": 10000
+        }
+    ]
+}

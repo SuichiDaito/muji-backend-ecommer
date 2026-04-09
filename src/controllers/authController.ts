@@ -7,18 +7,19 @@ class AuthController {
         try {
             const body: LoginRequest = req.body;
 
-            if (!body.username) {
-                return Errors.requiredUsername;
+            console.log("show the error request username = ", body.username);
+
+            debugger;
+            if (!body.username || body.username == "" || body.username == null || body.username == " ") {
+                console.log("error in here");
+                throw Errors.requiredUsername();
             }
 
             const user = await authServices.login(body);
 
+            console.log("show of the user", typeof user);
             if (!user) {
-                return Errors.requiredUsername;
-            }
-
-            if (user == null) {
-                return Errors.invalidUsername;
+                throw Errors.invalidUsername();
             }
 
             res.status(200).json({
@@ -26,7 +27,7 @@ class AuthController {
                 data: user
             });
         } catch (err) {
-            throw Errors.unknownError;
+            throw Errors.unknownError();
         }
 
     }

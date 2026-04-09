@@ -7,6 +7,10 @@ class AuthRepositories {
         try {
             const [rows] = await (await connection).execute('select * from Account where username = ?', [data.username]);
             console.log("show the result", [rows]);
+            console.log("show the object of rows", typeof rows);
+            console.log("parse of the object", JSON.stringify(rows));
+
+            console.log("parse of the typeof object ", typeof JSON.stringify(rows));
             return rows;
 
         } catch (err) {

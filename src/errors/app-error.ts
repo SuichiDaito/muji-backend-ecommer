@@ -1,7 +1,7 @@
 import { ErrorCode } from "./error-codes"
 import { IAppError } from "../models/errors/error-model";
 
-export class AppError extends Error implements IAppError {
+export default class AppError extends Error implements IAppError {
     status: number;
     code: ErrorCode;
 

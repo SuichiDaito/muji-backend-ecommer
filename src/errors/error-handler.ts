@@ -1,5 +1,5 @@
 import { Response, Request, NextFunction } from "express";
-import { AppError } from "./app-error";
+import AppError from "./app-error";
 import { ERROR_CODES } from "./error-codes";
 import { IAppError } from "../models/errors/error-model";
 
