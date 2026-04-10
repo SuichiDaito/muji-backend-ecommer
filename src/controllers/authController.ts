@@ -1,18 +1,18 @@
-import { LoginRequest } from "../models/authModel";
+import { LoginRequestDTO } from "../models/authModel";
 import authServices from "../services/authServices";
 import { Errors } from "../errors/error-factory";
 
 class AuthController {
     async login(req: any, res: any) {
         try {
-            const body: LoginRequest = req.body;
+            const body: LoginRequestDTO = req.body;
 
             console.log("show the error request username = ", body.username);
 
             debugger;
             if (!body.username || body.username == "" || body.username == null || body.username == " ") {
                 console.log("error in here");
-                throw Errors.requiredUsername();
+                // throw Errors.requiredUsername();
             }
 
             const user = await authServices.login(body);
@@ -27,6 +27,7 @@ class AuthController {
                 data: user
             });
         } catch (err) {
+            console.log("error", err);
             throw Errors.unknownError();
         }
 

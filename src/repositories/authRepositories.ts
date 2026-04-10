@@ -1,8 +1,8 @@
 import Database from "../config/database";
-import { LoginRequest } from "../models/authModel";
+import { LoginRequestDTO } from "../models/authModel";
 
 class AuthRepositories {
-    static async findByUser(data: LoginRequest) {
+    static async findByUser(data: LoginRequestDTO) {
         const connection = Database.connection();
         try {
             const [rows] = await (await connection).execute('select * from Account where username = ?', [data.username]);
