@@ -7,7 +7,7 @@ const validataLoginInput = (req: Request, res: Response, next: NextFunction) => 
     const username = body.username;
 
     if (!username || username == "" || username == " " || username == null) {
-        return next(Errors.requiredUsername());
+        return next(Errors.userNotFound());
     }
     next();
 }

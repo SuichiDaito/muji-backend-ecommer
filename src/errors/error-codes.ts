@@ -12,14 +12,3 @@ export const ERROR_CODES = {
 } as const;
 
 export type ErrorCode = typeof ERROR_CODES[keyof typeof ERROR_CODES];
-
-// export const HTTP_STATUS_CODES = {
-//     OK: 200,
-//     CREATED: 201,
-//     BAD_REQUEST: 400,
-//     UNAUTHORIZED: 401,
-//     NOT_FOUND: 404,
-//     INTERNAL_SERVER_ERROR: 500
-// } as const;
-
-// export type HttpStatus = typeof HTTP_STATUS_CODES[keyof typeof HTTP_STATUS_CODES]; 
