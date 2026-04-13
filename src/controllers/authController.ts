@@ -1,39 +1,44 @@
 import { LoginRequestDTO } from "../models/authModel";
 import authServices from "../services/authServices";
-import { Errors } from "../errors/error-factory";
+import { Request, Response } from "express";
+import AccountDTO from "../models/account.model";
+import catchAsync from "../utils/catchAsync";
 
 class AuthController {
-    async login(req: any, res: any) {
-        try {
-            const body: LoginRequestDTO = req.body;
+    static login = catchAsync(async (req: Request, res: Response) => {
+        const body: LoginRequestDTO = req.body;
 
-            console.log("show the error request username = ", body.username);
+        let accounts: AccountDTO[];
+        accounts = await authServices.login(body);
 
-            debugger;
-            if (!body.username || body.username == "" || body.username == null || body.username == " ") {
-                console.log("error in here");
-                // throw Errors.requiredUsername();
-            }
+        return res.status(200).json({
+            success: true,
+            message: "Login success!",
+            data: accounts,
+        });
+    });
 
-            const user = await authServices.login(body);
+    // async login(req: Request, res: Response) {
+    //     try {
+    //         const body: LoginRequestDTO = req.body;
 
-            console.log("show of the user", typeof user);
-            if (!user) {
-                throw Errors.invalidUsername();
-            }
+    //         let accounts: AccountDTO[];
+    //         accounts = await authServices.login(body);
 
-            res.status(200).json({
-                message: "Login success",
-                data: user
-            });
-        } catch (err) {
-            console.log("error", err);
-            throw Errors.unknownError();
-        }
+    //         res.status(200).json({
+    //             success: true,
+    //             message: "Login success!",
+    //             data: accounts,
+    //         });
+    //     } catch (err) {
+    //         console.log("error", err);
+    //         return err;
+    //     }
 
-    }
+    // }
+
     // call function connect
-    async connect(req: any, res: any) {
+    static async connect(req: any, res: any) {
         try {
             const account = await authServices.connect();
             res.status(200).json({
