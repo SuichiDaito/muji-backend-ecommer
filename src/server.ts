@@ -1,10 +1,8 @@
-import express, { NextFunction } from "express";
+import express from "express";
 import "reflect-metadata";
 
 import webRouter from "./routes/web";
 import dotenv from "dotenv";
-import { IAppError } from "./models/errors/error-model";
-import { Request, Response } from "express";
 import errorMiddleware from "./middleware/error.middleware";
 dotenv.config();
 
@@ -15,6 +13,6 @@ app.use("/", webRouter);
 
 app.use(errorMiddleware);
 
-app.listen(process.env.PORT, () => {
+app.listen(8081, () => {
   console.log(`Server running with port ${process.env.PORT} `);
 });

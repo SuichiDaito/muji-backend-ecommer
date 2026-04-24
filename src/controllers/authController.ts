@@ -1,14 +1,14 @@
 import { LoginRequestDTO } from "../models/authModel";
 import authServices from "../services/authServices";
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import AccountDTO from "../models/account.model";
 import catchAsync from "../utils/catchAsync";
 
 class AuthController {
-    static login = catchAsync(async (req: Request, res: Response) => {
+    static login = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
         const body: LoginRequestDTO = req.body;
-
         let accounts: AccountDTO[];
+
         accounts = await authServices.login(body);
 
         return res.status(200).json({

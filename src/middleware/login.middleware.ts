@@ -2,14 +2,15 @@ import { NextFunction } from "express";
 import { Errors } from "../errors/error-factory";
 import { Request, Response } from "express";
 
-const validataLoginInput = (req: Request, res: Response, next: NextFunction) => {
+const validateLoginInput = (req: Request, res: Response, next: NextFunction) => {
     const body = req.body;
-    const username = body.username;
 
-    if (!username || username == "" || username == " " || username == null) {
-        return next(Errors.userNotFound());
+    if (body.username == undefined || body.password == undefined) {
+        return next(Errors.fieldRequired());
+    } else if (typeof body.username !== "string" || typeof body.password !== "string") {
+        return next(Errors.invalidInputFormat());
     }
     next();
 }
 
-export default validataLoginInput;
+export default validateLoginInput;
