@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { Exclude, Expose } from "class-transformer";
 
-class AccountDTO {
+class ProfileDTO {
     @Expose()
     Id!: number;
 
@@ -24,4 +24,4 @@ class AccountDTO {
     token!: string | null;
 }
 
-export default AccountDTO;
+export default ProfileDTO;

@@ -1,9 +1,9 @@
 import authRepositories from "../repositories/authRepositories";
-import { LoginRequestDTO } from "../models/authModel";
+import { LoginRequestDTO } from "../models/request/authModel";
 import { plainToInstance } from "class-transformer";
-import AccountDTO from "../models/account.model";
+import ProfileDTO from "../models/response/profile.model";
 import { Errors } from "../errors/error-factory";
-import AuthMiddleware from "../middleware/login.middleware";
+import AuthMiddleware from "../middleware/auth.middleware";
 
 // đối với lớp services này chỉ để thực hiện gọi qua bên repositories để sử dụng lại
 // những function bên trong repo (vì chỗ này sẽ tiếp xúc, giao tiếp trực tiếp với database)
@@ -11,11 +11,8 @@ import AuthMiddleware from "../middleware/login.middleware";
 // ví dụ việc kiểm tra để xuất các lỗi mà hệ thống quy định bên trong thì nên sử dụng và xuất lỗi ở đây
 class AuthServices {
     static async login(data: LoginRequestDTO) {
-        let rows: AccountDTO[] = [];
-        rows = await authRepositories.findByUser(data);
-        // kiểm tra thêm password tại đây để kết luận là cái account này có hợp lệ hay không
-        // chỗ này phải kiểm tra 2 lần là vì không thể nào để cho hacker thực hiện một số string hack vào bên trong sql được. 
-        // Nên là bảo vệ sql 1 phần, bảo vệ luôn các request là 1 phần khác. 
+        let rows: ProfileDTO[] = [];
+        rows = await authRepositories.login(data);
 
         if (rows.length != 0) {
             const isCompare = await AuthMiddleware.comparePassword(data.password, rows[0].password);
@@ -26,7 +23,7 @@ class AuthServices {
             throw Errors.invalidUsernameAndPassword();
         }
 
-        const account = plainToInstance(AccountDTO, rows);
+        const account = plainToInstance(ProfileDTO, rows);
         return account;
     }
 
