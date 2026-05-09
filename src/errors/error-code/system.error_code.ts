@@ -1,0 +1,5 @@
+export const SYSTEM_ERROR_CODES = {
+    UNKNOW_ERROR: "UNKNOW_ERROR",
+    SERVER_ERROR: "SERVER_ERROR",
+    DB_ERROR: "DB_ERROR"
+} as const;

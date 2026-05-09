@@ -1,30 +1,32 @@
 import { NextFunction } from "express";
-import { Errors } from "../errors/error-factory";
+import { AuthErrorCodes } from "../errors/error-factory/auth.error_factory";
 import { Request, Response } from "express";
 import * as bcrypt from "bcrypt";
 
+const validateLoginInput = (req: Request, res: Response, next: NextFunction) => {
+    const body = req.body;
 
-class AuthMiddleware {
-    static validateLoginInput = (req: Request, res: Response, next: NextFunction) => {
-        const body = req.body;
-
-        if (body.username == undefined || body.password == undefined) {
-            return next(Errors.fieldRequired());
-        } else if (typeof body.username !== "string" || typeof body.password !== "string") {
-            return next(Errors.invalidInputFormat());
-        }
-        next();
+    if (body.email == undefined || body.password == undefined) {
+        return next(AuthErrorCodes.fieldRequired);
+    } else if (typeof body.email !== "string" || typeof body.password !== "string") {
+        return next(AuthErrorCodes.invalidInputFormat);
     }
-
-    static hasingInputPassword = async (password: string) => {
-        const hashPass = await bcrypt.hash(password, 10);
-        return hashPass;
-    }
-
-    static comparePassword = async (password: string, hash: string) => {
-        const isComparePass = await bcrypt.compare(password, hash);
-        return isComparePass;
-    }
+    next();
 }
 
-export default AuthMiddleware;
+// dành cho parse từ password => hashing
+const hasingInputPassword = async (password: string) => {
+    const hashPass = await bcrypt.hash(password, 10);
+    return hashPass;
+}
+
+// dành cho compare.
+const comparePassword = async (password: string, hash: string) => {
+    const isComparePass = await bcrypt.compare(password, hash);
+    return isComparePass;
+}
+
+
+export default {
+    validateLoginInput, hasingInputPassword, comparePassword
+}

@@ -3,6 +3,11 @@ export type LoginRequestDTO = {
     password: string
 }
 
+// export type RefreshTokenDTO = {
+//     refreshToken: string,
+//     id: number
+// }
+
 export type RegisterRequestDTO = {
     name: string;
     date: string;

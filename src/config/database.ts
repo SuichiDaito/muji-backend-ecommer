@@ -4,17 +4,15 @@ import { Pool } from "pg";
 dotenv.config();
 
 class Database {
-
     private static pool = new Pool({
-        host: process.env.HOST_NAME,
+        host: process.env.DB_HOST as string,
         port: Number(process.env.DB_PORT),
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
+        user: process.env.DB_USER as string,
+        password: process.env.DB_PASSWORD as string,
+        database: process.env.DB_NAME as string,
         max: 10,
-        idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 2000,
-
+        idleTimeoutMillis: 30000, // idle 30s thì đóng
+        connectionTimeoutMillis: 2000, // timeout khi connect
     });
 
     static getPool(): Pool {

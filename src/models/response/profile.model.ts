@@ -3,25 +3,44 @@ import { Exclude, Expose } from "class-transformer";
 
 class ProfileDTO {
     @Expose()
-    Id!: number;
+    id!: number;
 
     @Expose()
-    Id_profile!: number;
+    id_role!: number;
 
     @Expose()
-    username!: string;
+    name!: string;
+
+    @Expose()
+    gender!: string;
+
+    @Expose()
+    date!: Date;
+
+    @Expose()
+    address!: string;
+
+    @Expose()
+    email!: string;
 
     @Exclude()
     password!: string;
 
     @Expose()
-    status!: number;
+    phone!: number;
 
     @Expose()
-    Id_roles!: number;
+    create_at!: Date;
 
     @Expose()
-    token!: string | null;
+    delete_at!: Date | null;
+
+    @Expose()
+    refresh_token!: string;
+
+    @Expose()
+    revoked!: boolean;
+
 }
 
 export default ProfileDTO;
