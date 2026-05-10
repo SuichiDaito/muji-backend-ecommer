@@ -7,19 +7,53 @@ import catchAsync from "../../utils/catchAsync";
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+const logoutController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    let rows: number;
+    let id = Number(req.params.id);
+    console.log("id: ", id);
+
+    rows = await authServices.deleteRefreshServices(id);
+
+    return res.status(200).json({
+        success: true,
+        message: "Logout user successful!",
+        data: []
+    });
+});
+
+const getProfileController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    let profile: ProfileDTO[];
+    let id = Number(req.params.id);
+
+    profile = await authServices.getProfileServices(id);
+
+    return res.status(200).json({
+        success: true,
+        message: "Get profile user successful!",
+        data: profile
+    });
+});
+
+
 const loginController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const body: LoginRequestDTO = req.body;
     let profile: ProfileDTO[];
     profile = await authServices.loginServices(body);
 
     const accessToken = jwt.sign(
-        { "email": body.email },
+        {
+            "id": profile[0].id,
+            "email": body.email
+        },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: '30s' }
     );
 
     const refreshToken = jwt.sign(
-        { "email": body.email },
+        {
+            "id": profile[0].id,
+            "email": body.email
+        },
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: '1d' }
     );
@@ -49,4 +83,9 @@ const connectController = catchAsync(async (req: Request, res: Response) => {
     });
 })
 
-export default { loginController, connectController };
+export default {
+    loginController,
+    connectController,
+    getProfileController,
+    logoutController
+};

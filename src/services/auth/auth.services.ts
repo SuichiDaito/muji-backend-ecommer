@@ -5,6 +5,30 @@ import { plainToInstance } from "class-transformer";
 import ProfileDTO from "../../models/response/profile.model";
 import { AuthErrorCodes } from "../../errors/error-factory/auth.error_factory";
 
+const deleteRefreshServices = async (id: number) => {
+    let rows: number | null;
+    rows = await authRepositories.deleteRefreshToken(id);
+
+    if (rows == null || rows == 0) {
+        throw AuthErrorCodes.deleteRefushed();
+    }
+
+    return rows;
+
+}
+
+const getProfileServices = async (id: number) => {
+    let rows: ProfileDTO[] = [];
+    rows = await authRepositories.getProfileUser(id);
+
+    if (rows.length == 0) {
+        throw AuthErrorCodes.invalidEmailAndPassword();
+    }
+    const profile = plainToInstance(ProfileDTO, rows);
+
+    return profile;
+}
+
 
 const loginServices = async (data: LoginRequestDTO) => {
     let rows: ProfileDTO[] = [];
@@ -36,4 +60,10 @@ const connectServices = async () => {
     return result;
 }
 
-export default { loginServices, connectServices, refreshTokenServices };
+export default {
+    loginServices,
+    connectServices,
+    refreshTokenServices,
+    getProfileServices,
+    deleteRefreshServices
+};
