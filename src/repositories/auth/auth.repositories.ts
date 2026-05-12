@@ -6,6 +6,12 @@ import { LoginRequestDTO, RegisterRequestDTO } from "../../models/request/authMo
 // ở chỗ repositories này thì chỉ thực hiện các chức năng với data access bên trong
 // hàon toàn không có bất kỳ loại kiểm tra hoặc là validate tại đây.
 
+// const connectionSeque = async () => {
+//     const profile = await Prf
+// }
+
+
+
 const deleteRefreshToken = async (id: number) => {
     const pool = Database.getPool();
     const result = await pool.query("update profile set refresh_token = null where id = $1", [id]);
