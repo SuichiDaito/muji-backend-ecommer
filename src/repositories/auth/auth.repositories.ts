@@ -1,5 +1,5 @@
 
-import Database from "../../config/postgre_db";
+import Database from "../../config/database";
 import { LoginRequestDTO, RegisterRequestDTO } from "../../models/request/authModel";
 
 // nếu như muốn tuân thủ theo quy tắc của clean architecture thì phải phân biệt lỗi ở  mỗi chỗ mỗi khác nhau.

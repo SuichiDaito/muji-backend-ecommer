@@ -1,7 +1,7 @@
 import express from "express";
 import "reflect-metadata";
 
-import webRouter from "./routes/web";
+import webRouter from "./routes/api";
 import dotenv from "dotenv";
 import errorMiddleware from "./middleware/error.middleware";
 dotenv.config();
@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/", webRouter);
+app.use("/api/", webRouter);
 
 app.use(errorMiddleware);
 

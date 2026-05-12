@@ -16,7 +16,6 @@ export const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
         (err: any, decoded: any) => {
             if (err) return next(AuthErrorCodes.wrongToken());
             const email = decoded.email;
-            console.log("show the email decode", email);
             next();
         }
     );

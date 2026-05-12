@@ -10,7 +10,6 @@ require('dotenv').config();
 const logoutController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     let rows: number;
     let id = Number(req.params.id);
-    console.log("id: ", id);
 
     rows = await authServices.deleteRefreshServices(id);
 

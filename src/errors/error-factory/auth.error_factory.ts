@@ -6,6 +6,6 @@ export const AuthErrorCodes = {
     fieldRequired: () => new AppError(401, AUTH_ERROR_CODES.REQUIRED_FIELD, "Email or password are required"),
     invalidEmailAndPassword: () => new AppError(404, AUTH_ERROR_CODES.USER_NOT_FOUND, "User not found!"),
     wrongToken: () => new AppError(403, AUTH_ERROR_CODES.TOKEN_IS_WRONG, "Token is wrong"),
-    tokenExpires: () => new AppError(401, AUTH_ERROR_CODES.TOKEN_EXPIRES, "Token expire !"),
+    tokenExpires: () => new AppError(401, AUTH_ERROR_CODES.TOKEN_EXPIRES, "Token expire!"),
     deleteRefushed: () => new AppError(404, AUTH_ERROR_CODES.DELETE_REFUSHED, "Fail to delete user")
 } as const;
