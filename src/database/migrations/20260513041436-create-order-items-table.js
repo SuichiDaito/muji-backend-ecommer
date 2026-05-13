@@ -37,6 +37,12 @@ module.exports = {
         allowNull: false,
       },
 
+      quanlity: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+      },
+
       price_original: {
         type: Sequelize.INTEGER,
         allowNull: false,
