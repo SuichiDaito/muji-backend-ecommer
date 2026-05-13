@@ -4,7 +4,7 @@ const { type } = require("node:os");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("cards_item", {
+    await queryInterface.createTable("card_items", {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -76,6 +76,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable("products");
+    await queryInterface.dropTable("card_items");
   },
 };
