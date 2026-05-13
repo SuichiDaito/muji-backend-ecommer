@@ -28,12 +28,12 @@ module.exports = {
       },
 
       size_product: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
       },
 
       color_product: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
       },
 
@@ -43,7 +43,7 @@ module.exports = {
         defaultValue: 0
       },
 
-      quanlity: {
+      quantity: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0

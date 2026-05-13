@@ -5,11 +5,11 @@ const { type } = require("node:os");
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.addConstraint("order_items", {
-      fields: ['quanlity'],
+      fields: ['quantity'],
       type: 'check',
-      name: 'chk_quanlity_order_items',
+      name: 'chk_quantity_order_items',
       where: {
-        quanlity: {
+        quantity: {
           [Sequelize.Op.gte]: 0
         }
       }
@@ -17,6 +17,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeConstraint('order_items', 'chk_quanlity_order_items');
+    await queryInterface.removeConstraint('order_items', 'chk_quantity_order_items');
   }
 };

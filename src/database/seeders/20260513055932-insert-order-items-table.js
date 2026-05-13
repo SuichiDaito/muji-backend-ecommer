@@ -14,9 +14,7 @@ module.exports = {
         name_payment: 'card',
         gross_amount: 100,
         vat_amount: 10,
-        net_amount: 110,
-        created_at: new Date(),
-        deleted_at: null,
+        net_amount: 110
       },
       {
         id_order: 2,
@@ -29,9 +27,7 @@ module.exports = {
         name_payment: 'credit_card',
         gross_amount: 200,
         vat_amount: 20,
-        net_amount: 220,
-        created_at: new Date(),
-        deleted_at: null,
+        net_amount: 220
       },
       {
         id_order: 3,
@@ -44,9 +40,7 @@ module.exports = {
         name_payment: 'COD',
         gross_amount: 300,
         vat_amount: 30,
-        net_amount: 330,
-        created_at: new Date(),
-        deleted_at: null,
+        net_amount: 330
       },
       {
         id_order: 4,
@@ -59,9 +53,7 @@ module.exports = {
         name_payment: 'e-commerce',
         gross_amount: 80,
         vat_amount: 8,
-        net_amount: 88,
-        created_at: new Date(),
-        deleted_at: null,
+        net_amount: 88
       },
       {
         id_order: 5,
@@ -74,9 +66,7 @@ module.exports = {
         name_payment: 'card',
         gross_amount: 150,
         vat_amount: 15,
-        net_amount: 165,
-        created_at: new Date(),
-        deleted_at: null,
+        net_amount: 165
       },
       {
         id_order: 6,
@@ -89,9 +79,7 @@ module.exports = {
         name_payment: 'credit_card',
         gross_amount: 120,
         vat_amount: 12,
-        net_amount: 132,
-        created_at: new Date(),
-        deleted_at: null,
+        net_amount: 132
       },
       {
         id_order: 7,
@@ -104,9 +92,7 @@ module.exports = {
         name_payment: 'COD',
         gross_amount: 220,
         vat_amount: 22,
-        net_amount: 242,
-        created_at: new Date(),
-        deleted_at: null,
+        net_amount: 242
       },
       {
         id_order: 8,
@@ -119,9 +105,7 @@ module.exports = {
         name_payment: 'e-commerce',
         gross_amount: 320,
         vat_amount: 32,
-        net_amount: 352,
-        created_at: new Date(),
-        deleted_at: null,
+        net_amount: 352
       },
       {
         id_order: 9,
@@ -134,9 +118,7 @@ module.exports = {
         name_payment: 'card',
         gross_amount: 90,
         vat_amount: 9,
-        net_amount: 99,
-        created_at: new Date(),
-        deleted_at: null,
+        net_amount: 99
       },
       {
         id_order: 10,
@@ -149,9 +131,7 @@ module.exports = {
         name_payment: 'credit_card',
         gross_amount: 120,
         vat_amount: 12,
-        net_amount: 132,
-        created_at: new Date(),
-        deleted_at: null,
+        net_amount: 132
       },
     ]);
   },

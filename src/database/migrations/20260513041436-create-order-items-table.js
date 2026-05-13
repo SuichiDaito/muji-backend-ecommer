@@ -37,7 +37,7 @@ module.exports = {
         allowNull: false,
       },
 
-      quanlity: {
+      quantity: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0
