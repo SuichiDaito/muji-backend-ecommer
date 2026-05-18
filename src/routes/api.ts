@@ -9,7 +9,7 @@ router.post("/login", middleware.validateLoginInput, authController.loginControl
 router.get("/logout/:id", authController.logoutController);
 
 // test connection 
-router.get("/test", verifyJWT, authController.connectController);
+router.get("/test", authController.connectController);
 
 // flow related user 
 router.get("/profile/:id", verifyJWT, authController.getProfileController);

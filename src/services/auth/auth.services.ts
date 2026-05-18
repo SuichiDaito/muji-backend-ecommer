@@ -24,7 +24,9 @@ const getProfileServices = async (id: number) => {
     if (rows.length == 0) {
         throw AuthErrorCodes.invalidEmailAndPassword();
     }
-    const profile = plainToInstance(ProfileDTO, rows);
+    const profile = plainToInstance(ProfileDTO, rows, {
+        excludeExtraneousValues: true
+    });
 
     return profile;
 }
@@ -33,8 +35,9 @@ const getProfileServices = async (id: number) => {
 const loginServices = async (data: LoginRequestDTO) => {
     let rows: ProfileDTO[] = [];
     rows = await authRepositories.findEmailUser(data);
+    console.log("show the type of ob", rows);
     if (rows.length != 0) {
-        const isCompare = await authMiddleware.comparePassword(data.password, rows[0].password);
+        const isCompare = await authMiddleware.comparePassword(data.password, "àhgjkshadf");
         if (isCompare == false) {
             throw AuthErrorCodes.invalidEmailAndPassword();
         }
@@ -42,7 +45,9 @@ const loginServices = async (data: LoginRequestDTO) => {
         throw AuthErrorCodes.invalidEmailAndPassword();
     }
 
-    const profile = plainToInstance(ProfileDTO, rows);
+    const profile = plainToInstance(ProfileDTO, rows, {
+        excludeExtraneousValues: true
+    });
     return profile;
 }
 

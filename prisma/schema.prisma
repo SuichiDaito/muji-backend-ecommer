@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model Role_type {
+  id        Int      @id @default(autoincrement())
+  name_role     String
+  status  Boolean @default(true)   
+}
+model Profiles {
+  id Int @id @default(autoincrement())
+  id_role Int 
+  name String
+  gender Boolean
+  date DateTime
+  address String
+  email String @unique
+  password String
+  phone String 
+  refresh_token String 
+  revoked Boolean @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime?
+}
+
+model Cards {
+  id        Int      @id @default(autoincrement())
+  id_user Int
+  status  Boolean @default(true)   
+  created_at DateTime @default(now())
+  updated_at DateTime?
+}
+
+model Product_type {
+  id        Int      @id @default(autoincrement())
+  name     String
+  status  Boolean @default(true)   
+}
+
+model Color_type {
+  id        Int      @id @default(autoincrement())
+  name     String
+  status  Boolean @default(true)   
+}
+
+model Size_type {
+  id        Int      @id @default(autoincrement())
+  name     String
+  status  Boolean @default(true)   
+}
+
+model Products {
+  id Int @id @default(autoincrement())
+  id_type Int 
+  id_color Int 
+  id_size Int 
+  name String
+  price_original Int 
+  created_at DateTime @default(now())
+  updated_at DateTime?
+}
+
+model Card_items {
+  id Int @id @default(autoincrement())
+  id_card Int
+  id_product Int 
+  name_product String
+  size_product String
+  color_product String
+  price_original Int 
+  quantity Int 
+  subtotal_amount Int
+  is_selected Boolean 
+  created_at DateTime @default(now())
+  updated_at DateTime?
+}
+
+model Payment_type {
+  id        Int      @id @default(autoincrement())
+  name     String
+  status  Boolean @default(true)   
+}
+
+model Orders {
+  id        Int      @id @default(autoincrement())
+  id_user Int
+  id_payment Int
+  created_at DateTime @default(now())
+  updated_at DateTime?
+}
+
+model Order_items {
+  id Int @id @default(autoincrement())
+  id_order Int
+  id_product Int 
+  name_product String
+  color_product String
+  size_product String
+  quantity Int 
+  price_original Int 
+  name_payment String 
+  gross_amount Int
+  vat_amount Int
+  net_amount Int
+}
+
+
+
+
+
+
+
+
+

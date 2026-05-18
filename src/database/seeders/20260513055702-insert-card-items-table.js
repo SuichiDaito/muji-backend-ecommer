@@ -14,7 +14,7 @@ module.exports = {
         subtotal_amount: 100,
         is_selected: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_card: 2,
@@ -27,7 +27,7 @@ module.exports = {
         subtotal_amount: 200,
         is_selected: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_card: 3,
@@ -40,7 +40,7 @@ module.exports = {
         subtotal_amount: 300,
         is_selected: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_card: 4,
@@ -53,7 +53,7 @@ module.exports = {
         subtotal_amount: 80,
         is_selected: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_card: 5,
@@ -66,7 +66,7 @@ module.exports = {
         subtotal_amount: 150,
         is_selected: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_card: 6,
@@ -79,7 +79,7 @@ module.exports = {
         subtotal_amount: 120,
         is_selected: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_card: 7,
@@ -92,7 +92,7 @@ module.exports = {
         subtotal_amount: 220,
         is_selected: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_card: 8,
@@ -105,7 +105,7 @@ module.exports = {
         subtotal_amount: 320,
         is_selected: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_card: 9,
@@ -118,7 +118,7 @@ module.exports = {
         subtotal_amount: 90,
         is_selected: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_card: 10,
@@ -131,7 +131,7 @@ module.exports = {
         subtotal_amount: 120,
         is_selected: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
     ]);
   },

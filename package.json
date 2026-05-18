@@ -13,13 +13,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec ts-node src/server.ts",
-    "db:reset": "docker compose down -v && docker compose up -d",
-    "db:migrate": "npx sequelize-cli db:migrate",
-    "db:seed": "npx sequelize-cli db:seed:all",
-    "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
-    "db:migrate:undo:all": "npx sequelize-cli dn:migrate:undo:all"
+    "docker:reset": "docker compose down -v && docker compose up -d",
+    "prisma:reset": "npx prisma migrate reset",
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:seed": "npx sequelize-cli db seed"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^6.19.3",
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",
     "cookie-parser": "^1.4.7",
@@ -29,6 +30,7 @@
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.20.0",
     "pg-hstore": "^2.3.4",
+    "prisma": "^6.19.3",
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.8"
   },

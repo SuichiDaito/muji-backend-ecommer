@@ -10,7 +10,7 @@ module.exports = {
         name: 'Organic Cotton T-Shirt',
         price_original: 100,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_type: 2,
@@ -19,7 +19,7 @@ module.exports = {
         name: 'Canvas Low Cut Sneakers',
         price_original: 200,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_type: 3,
@@ -28,7 +28,7 @@ module.exports = {
         name: 'Minimal Strap Sandals',
         price_original: 150,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_type: 4,
@@ -37,7 +37,7 @@ module.exports = {
         name: 'Cotton Twill Cap',
         price_original: 80,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_type: 5,
@@ -46,7 +46,7 @@ module.exports = {
         name: 'Compact Fabric Pouch',
         price_original: 50,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_type: 1,
@@ -55,7 +55,7 @@ module.exports = {
         name: 'Washed Cotton Long Sleeve Shirt',
         price_original: 120,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_type: 2,
@@ -64,7 +64,7 @@ module.exports = {
         name: 'Lightweight Slip-On Shoes',
         price_original: 220,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_type: 3,
@@ -73,7 +73,7 @@ module.exports = {
         name: 'Soft Sole Indoor Sandals',
         price_original: 160,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_type: 4,
@@ -82,7 +82,7 @@ module.exports = {
         name: 'Wool Blend Beanie',
         price_original: 90,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_type: 5,
@@ -91,7 +91,7 @@ module.exports = {
         name: 'Nylon Utility Bag',
         price_original: 60,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
     ]);
   },

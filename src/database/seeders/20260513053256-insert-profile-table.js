@@ -15,7 +15,7 @@ module.exports = {
         refresh_token: null,
         revoked: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_role: 2,
@@ -29,7 +29,7 @@ module.exports = {
         refresh_token: null,
         revoked: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_role: 3,
@@ -43,7 +43,7 @@ module.exports = {
         refresh_token: null,
         revoked: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_role: 2,
@@ -57,7 +57,7 @@ module.exports = {
         refresh_token: null,
         revoked: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_role: 1,
@@ -71,7 +71,7 @@ module.exports = {
         refresh_token: null,
         revoked: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_role: 2,
@@ -85,7 +85,7 @@ module.exports = {
         refresh_token: null,
         revoked: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_role: 3,
@@ -99,7 +99,7 @@ module.exports = {
         refresh_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxlLmhvYW5nLmN1b25nQG1haWwuY29tIiwiaWF0IjoxNzc4MzA4MzI4LCJleHAiOjE3NzgzOTQ3Mjh9.eyX6IZofIwhHxcvwOKTZS_6_-KX5lAV3pX7KsFQ2ycY',
         revoked: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_role: 2,
@@ -113,7 +113,7 @@ module.exports = {
         refresh_token: null,
         revoked: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_role: 1,
@@ -127,7 +127,7 @@ module.exports = {
         refresh_token: null,
         revoked: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
       {
         id_role: 2,
@@ -141,7 +141,7 @@ module.exports = {
         refresh_token: null,
         revoked: false,
         created_at: new Date(),
-        deleted_at: null,
+        updated_at: null,
       },
     ]);
   },
