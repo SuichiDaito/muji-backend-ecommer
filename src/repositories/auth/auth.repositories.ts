@@ -1,7 +1,6 @@
 
 import Database from "../../config/database";
 import { LoginRequestDTO, RegisterRequestDTO } from "../../models/request/authModel";
-import Profile from "../../database/models/profiles";
 
 
 const deleteRefreshToken = async (id: number) => {
@@ -36,10 +35,10 @@ const register = async (data: RegisterRequestDTO) => {
 }
 
 const connect = async () => {
-    const raw = await Profile.findAll({ raw: true });
-    console.log("show the db", raw);
+    const pool = Database.getPool();
 
-    return raw;
+    const result = await pool.query('select * from profiles');
+    return result.rows;
 }
 
 export default { findEmailUser, connect, register, updateRefreshToken, getProfileUser, deleteRefreshToken };

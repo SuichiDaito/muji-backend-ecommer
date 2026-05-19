@@ -4,8 +4,7 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+provider = "prisma-client-js"
 }
 
 datasource db {
@@ -16,7 +15,9 @@ datasource db {
 model Role_type {
   id        Int      @id @default(autoincrement())
   name_role     String
-  status  Boolean @default(true)   
+  status  Boolean @default(true)  
+  
+  profile Profiles[]
 }
 model Profiles {
   id Int @id @default(autoincrement())
@@ -28,10 +29,15 @@ model Profiles {
   email String @unique
   password String
   phone String 
-  refresh_token String 
+  refresh_token String? 
   revoked Boolean @default(false)
   created_at DateTime @default(now())
   updated_at DateTime?
+
+  role Role_type @relation(fields: [id_role], references: [id])
+
+  cards Cards[]
+  orders Orders[]
 }
 
 model Cards {
@@ -40,24 +46,33 @@ model Cards {
   status  Boolean @default(true)   
   created_at DateTime @default(now())
   updated_at DateTime?
+
+  user Profiles @relation(fields: [id_user], references: [id])
+  card_items Card_items[]
 }
 
 model Product_type {
   id        Int      @id @default(autoincrement())
   name     String
   status  Boolean @default(true)   
+
+  product Products[]
 }
 
 model Color_type {
   id        Int      @id @default(autoincrement())
   name     String
-  status  Boolean @default(true)   
+  status  Boolean @default(true)
+  
+  product Products[] 
 }
 
 model Size_type {
   id        Int      @id @default(autoincrement())
   name     String
   status  Boolean @default(true)   
+
+  product Products[] 
 }
 
 model Products {
@@ -69,6 +84,12 @@ model Products {
   price_original Int 
   created_at DateTime @default(now())
   updated_at DateTime?
+
+  type Product_type @relation(fields: [id_type], references: [id])
+  color Color_type @relation(fields: [id_color], references: [id])
+  size Size_type @relation(fields: [id_size], references: [id])
+  card_items Card_items[]
+  order_items Order_items[]
 }
 
 model Card_items {
@@ -84,12 +105,18 @@ model Card_items {
   is_selected Boolean 
   created_at DateTime @default(now())
   updated_at DateTime?
+
+  card Cards @relation(fields: [id_card], references: [id])
+  product Products @relation(fields: [id_product], references: [id])
+
 }
 
 model Payment_type {
   id        Int      @id @default(autoincrement())
   name     String
   status  Boolean @default(true)   
+
+  orders Orders[]
 }
 
 model Orders {
@@ -98,6 +125,10 @@ model Orders {
   id_payment Int
   created_at DateTime @default(now())
   updated_at DateTime?
+
+  payment Payment_type @relation(fields: [id_payment], references: [id])
+  profile Profiles @relation(fields: [id_user], references: [id])
+  order_items Order_items[]
 }
 
 model Order_items {
@@ -113,6 +144,9 @@ model Order_items {
   gross_amount Int
   vat_amount Int
   net_amount Int
+
+  orders Orders @relation(fields: [id_order], references:[id])
+  product Products @relation(fields: [id_product], references: [id])
 }
 
 
