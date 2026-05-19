@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import { seedRoles } from "./seeds/role.seed";
 import { seedColors } from "./seeds/color_type.seed";
 import { seedSizes } from "./seeds/size_type.seed";
@@ -10,9 +9,7 @@ import { seedCardItems } from "./seeds/card_items.seed";
 import { seedCards } from "./seeds/cards.seed";
 import { seedProfiles } from "./seeds/profile.seed";
 import { seedProducts } from "./seeds/product.seed";
-
-
-const prisma = new PrismaClient();
+import prisma from "../src/config/prisma";
 
 async function main() {
     await seedRoles(prisma);

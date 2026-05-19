@@ -1,33 +1,52 @@
 
 import Database from "../../config/database";
 import { LoginRequestDTO, RegisterRequestDTO } from "../../models/request/authModel";
+import prisma from "../../config/prisma";
 
 
 const deleteRefreshToken = async (id: number) => {
-    const pool = Database.getPool();
-    const result = await pool.query("update profiles set refresh_token = null where id = $1", [id]);
+    const result = await prisma.profiles.update({
+        where: {
+            id: id
+        },
+        data: {
+            refresh_token: null
+        }
+    });
 
-    return result.rowCount;
+    return result;
 }
 
 const getProfileUser = async (id: number) => {
-    const pool = Database.getPool();
-    const result = await pool.query("select * from profiles where id = $1", [id]);
+    const result = await prisma.profiles.findUnique({
+        where: {
+            id: id
+        }
+    });
 
-    return result.rows;
-
+    return result as any;
 }
 
 const findEmailUser = async (data: LoginRequestDTO) => {
-    const pool = Database.getPool();
-    const result = await pool.query('select * from profiles where email = $1', [data.email]);
-    return result.rows;
+    const result = await prisma.profiles.findUnique({
+        where: {
+            email: data.email
+        }
+    });
+    return result as any;
 }
 
 const updateRefreshToken = async (refreshToken: string, id: number) => {
-    const pool = Database.getPool();
-    const result = await pool.query("update profiles set refresh_token = $1 where id = $2", [refreshToken, id]);
-    return result;
+    const result = await prisma.profiles.update({
+        where: {
+            id: id
+        },
+        data: {
+            refresh_token: refreshToken
+        }
+    });
+
+    return result as any;
 }
 
 const register = async (data: RegisterRequestDTO) => {
@@ -35,10 +54,8 @@ const register = async (data: RegisterRequestDTO) => {
 }
 
 const connect = async () => {
-    const pool = Database.getPool();
-
-    const result = await pool.query('select * from profiles');
-    return result.rows;
+    const result = await prisma.profiles.findMany();
+    return result;
 }
 
 export default { findEmailUser, connect, register, updateRefreshToken, getProfileUser, deleteRefreshToken };

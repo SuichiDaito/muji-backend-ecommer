@@ -41,6 +41,12 @@ class ProfileDTO {
     @Expose()
     revoked!: boolean;
 
+    @Expose()
+    created_at!: Date | null;
+
+    @Expose()
+    updated_at!: Date | null;
+
 }
 
 export default ProfileDTO;

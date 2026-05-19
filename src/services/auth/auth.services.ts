@@ -4,26 +4,21 @@ import { LoginRequestDTO, } from "../../models/request/authModel";
 import { plainToInstance } from "class-transformer";
 import ProfileDTO from "../../models/response/profile.model";
 import { AuthErrorCodes } from "../../errors/error-factory/auth.error_factory";
+import prisma from "../../config/prisma";
 
 const deleteRefreshServices = async (id: number) => {
-    let rows: number | null;
-    rows = await authRepositories.deleteRefreshToken(id);
-
-    if (rows == null || rows == 0) {
-        throw AuthErrorCodes.deleteRefushed();
-    }
-
+    const rows = await authRepositories.deleteRefreshToken(id);
     return rows;
-
 }
 
 const getProfileServices = async (id: number) => {
-    let rows: ProfileDTO[] = [];
+    let rows: ProfileDTO;
     rows = await authRepositories.getProfileUser(id);
 
-    if (rows.length == 0) {
+    if (rows == null) {
         throw AuthErrorCodes.invalidEmailAndPassword();
     }
+
     const profile = plainToInstance(ProfileDTO, rows, {
         excludeExtraneousValues: true
     });
@@ -33,11 +28,10 @@ const getProfileServices = async (id: number) => {
 
 
 const loginServices = async (data: LoginRequestDTO) => {
-    let rows: ProfileDTO[] = [];
+    let rows: ProfileDTO;
     rows = await authRepositories.findEmailUser(data);
-    console.log("show the type of ob", rows);
-    if (rows.length != 0) {
-        const isCompare = await authMiddleware.comparePassword(data.password, "àhgjkshadf");
+    if (rows != null) {
+        const isCompare = await authMiddleware.comparePassword(data.password, rows['password']);
         if (isCompare == false) {
             throw AuthErrorCodes.invalidEmailAndPassword();
         }
@@ -46,17 +40,13 @@ const loginServices = async (data: LoginRequestDTO) => {
     }
 
     const profile = plainToInstance(ProfileDTO, rows, {
-        excludeExtraneousValues: true
     });
+    excludeExtraneousValues: true
     return profile;
 }
 
 const refreshTokenServices = async (refreshToken: string, id: number) => {
     const result = await authRepositories.updateRefreshToken(refreshToken, id);
-
-    if (result.rowCount == 0) {
-        throw AuthErrorCodes.wrongToken();
-    }
     return result;
 }
 

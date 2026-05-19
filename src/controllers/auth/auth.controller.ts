@@ -8,10 +8,9 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const logoutController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    let rows: number;
     let id = Number(req.params.id);
 
-    rows = await authServices.deleteRefreshServices(id);
+    const rows = await authServices.deleteRefreshServices(id);
 
     return res.status(200).json({
         success: true,
@@ -21,7 +20,7 @@ const logoutController = catchAsync(async (req: Request, res: Response, next: Ne
 });
 
 const getProfileController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    let profile: ProfileDTO[];
+    let profile: ProfileDTO;
     let id = Number(req.params.id);
 
     profile = await authServices.getProfileServices(id);
@@ -36,12 +35,12 @@ const getProfileController = catchAsync(async (req: Request, res: Response, next
 
 const loginController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const body: LoginRequestDTO = req.body;
-    let profile: ProfileDTO[];
+    let profile: ProfileDTO;
     profile = await authServices.loginServices(body);
 
     const accessToken = jwt.sign(
         {
-            "id": profile[0].id,
+            "id": profile.id,
             "email": body.email
         },
         process.env.ACCESS_TOKEN_SECRET,
@@ -50,14 +49,14 @@ const loginController = catchAsync(async (req: Request, res: Response, next: Nex
 
     const refreshToken = jwt.sign(
         {
-            "id": profile[0].id,
+            "id": profile.id,
             "email": body.email
         },
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: '1d' }
     );
 
-    const checkUpdate = await authServices.refreshTokenServices(refreshToken, profile[0].id);
+    const checkUpdate = await authServices.refreshTokenServices(refreshToken, profile.id);
 
     res.cookie('jwt', refreshToken, {
         httpOnly: true,
