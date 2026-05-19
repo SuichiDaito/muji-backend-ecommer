@@ -1,5 +1,3 @@
-
-import Database from "../../config/database";
 import { LoginRequestDTO, RegisterRequestDTO } from "../../models/request/authModel";
 import prisma from "../../config/prisma";
 
@@ -49,8 +47,29 @@ const updateRefreshToken = async (refreshToken: string, id: number) => {
     return result as any;
 }
 
-const register = async (data: RegisterRequestDTO) => {
-    // thực hiện transactions ở đây để đảm bảo được flow này nó sẽ được hoàn thành 
+const registerProfiles = async (data: RegisterRequestDTO) => {
+    const result = await prisma.profiles.create({
+        data: {
+            name: data.name,
+            gender: data.gender,
+            date: data.date,
+            address: data.address,
+            password: data.password,
+            phone: data.phone,
+            email: data.email,
+            refresh_token: data.refresh_token,
+            revoked: data.revoked,
+            created_at: data.created_at,
+            updated_at: data.updated_at,
+            role: {
+                connect: {
+                    id: data.roleId
+                }
+            }
+        }
+    });
+
+    return result;
 }
 
 const connect = async () => {
@@ -58,4 +77,11 @@ const connect = async () => {
     return result;
 }
 
-export default { findEmailUser, connect, register, updateRefreshToken, getProfileUser, deleteRefreshToken };
+export default {
+    findEmailUser,
+    connect,
+    registerProfiles,
+    updateRefreshToken,
+    getProfileUser,
+    deleteRefreshToken
+};

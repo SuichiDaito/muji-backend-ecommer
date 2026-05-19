@@ -1,10 +1,19 @@
 import authRepositories from "../../repositories/auth/auth.repositories";
 import authMiddleware from "../../middleware/auth.middleware";
-import { LoginRequestDTO, } from "../../models/request/authModel";
+import { LoginRequestDTO, RegisterRequestDTO, } from "../../models/request/authModel";
 import { plainToInstance } from "class-transformer";
 import ProfileDTO from "../../models/response/profile.model";
 import { AuthErrorCodes } from "../../errors/error-factory/auth.error_factory";
 import prisma from "../../config/prisma";
+
+const registerProfilesServices = async (data: RegisterRequestDTO) => {
+    const result = await authRepositories.registerProfiles(data);
+    const profile = plainToInstance(ProfileDTO, result, {
+        excludeExtraneousValues: true
+    });
+
+    return profile;
+}
 
 const deleteRefreshServices = async (id: number) => {
     const rows = await authRepositories.deleteRefreshToken(id);
@@ -60,5 +69,6 @@ export default {
     connectServices,
     refreshTokenServices,
     getProfileServices,
-    deleteRefreshServices
+    deleteRefreshServices,
+    registerProfilesServices
 };

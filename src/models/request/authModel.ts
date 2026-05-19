@@ -3,19 +3,17 @@ export type LoginRequestDTO = {
     password: string
 }
 
-// export type RefreshTokenDTO = {
-//     refreshToken: string,
-//     id: number
-// }
-
 export type RegisterRequestDTO = {
+    roleId: number;
     name: string;
+    gender: boolean;
     date: string;
-    gender: number;
     address: string;
-    email: string;
-    phone: string;
-    Id_profile: number;
-    username: string;
     password: string;
+    phone: string;
+    email: string;
+    refresh_token: string;
+    revoked: boolean;
+    created_at: Date;
+    updated_at: Date;
 }

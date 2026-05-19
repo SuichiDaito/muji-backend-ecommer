@@ -21,7 +21,7 @@ const errorMiddleware = (err: IAppError, req: Request, res: Response, next: Next
                 success: false,
                 error: {
                     code: "DUPLICATE_DATA",
-                    message: "Duplicate data"
+                    message: "Data already exists"
                 }
             });
         } else if (err.code == "P2025") {
@@ -37,6 +37,18 @@ const errorMiddleware = (err: IAppError, req: Request, res: Response, next: Next
                 message: 'Cannot delete because related data exists'
             });
 
+        } else if (err.code == "P2011") {
+            return res.status(400).json({
+                message: 'Null constraint violation'
+            });
+        } else if (err.code == "P2000") {
+            return res.status(400).json({
+                message: 'Value too long'
+            });
+        } else if (err.code == "P2006") {
+            return res.status(400).json({
+                message: 'Invalid value'
+            });
         }
     }
 

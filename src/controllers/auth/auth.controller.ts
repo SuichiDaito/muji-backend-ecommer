@@ -7,6 +7,19 @@ import catchAsync from "../../utils/catchAsync";
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+
+const registerProfielsController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    let data = req.body;
+    const result = await authServices.registerProfilesServices(data);
+
+    return res.status(200).json({
+        success: true,
+        message: "Create user successfull!",
+        data: result
+    });
+
+});
+
 const logoutController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     let id = Number(req.params.id);
 
@@ -85,5 +98,6 @@ export default {
     loginController,
     connectController,
     getProfileController,
-    logoutController
+    logoutController,
+    registerProfielsController
 };
