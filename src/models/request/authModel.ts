@@ -7,7 +7,7 @@ export type RegisterRequestDTO = {
     roleId: number;
     name: string;
     gender: boolean;
-    date: string;
+    date: Date;
     address: string;
     password: string;
     phone: string;

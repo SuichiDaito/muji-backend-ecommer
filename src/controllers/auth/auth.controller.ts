@@ -3,6 +3,7 @@ import authServices from "../../services/auth/auth.services";
 import { Request, Response, NextFunction } from "express";
 import ProfileDTO from "../../models/response/profile.model";
 import catchAsync from "../../utils/catchAsync";
+import authMiddleware from "../../middleware/auth.middleware";
 
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -10,7 +11,14 @@ require('dotenv').config();
 
 const registerProfielsController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     let data = req.body;
+
+    const pass = await authMiddleware.hasingInputPassword(data['password']);
+
+    console.log("show password", pass);
+
     const result = await authServices.registerProfilesServices(data);
+
+    console.log("data body", data);
 
     return res.status(200).json({
         success: true,

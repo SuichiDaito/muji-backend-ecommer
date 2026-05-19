@@ -52,14 +52,14 @@ const registerProfiles = async (data: RegisterRequestDTO) => {
         data: {
             name: data.name,
             gender: data.gender,
-            date: data.date,
+            date: new Date(),
             address: data.address,
             password: data.password,
             phone: data.phone,
             email: data.email,
             refresh_token: data.refresh_token,
             revoked: data.revoked,
-            created_at: data.created_at,
+            created_at: new Date(),
             updated_at: data.updated_at,
             role: {
                 connect: {
