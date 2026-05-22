@@ -1,0 +1,3 @@
+export const PRODUCT_ERROR_CODE = {
+    NOT_FOUND_PRODUCT: "NOT_FOUND_PRODUCT"
+} as const;
