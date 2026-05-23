@@ -6,10 +6,11 @@ import productServices from "../../services/product/product.services";
 const getProductController = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     let id = Number(req.params.id);
     const result = await productServices.getProductServices(id);
+    console.log("look found the product item");
 
     return res.status(200).json({
         success: true,
-        message: "Infomations of the product",
+        message: "Get the information product",
         data: result
     });
 });
