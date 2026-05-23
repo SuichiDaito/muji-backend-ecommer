@@ -90,6 +90,7 @@ model Products {
   size Size_type @relation(fields: [id_size], references: [id])
   card_items Card_items[]
   order_items Order_items[]
+  images Images[]
 }
 
 model Card_items {
@@ -148,6 +149,16 @@ model Order_items {
   orders Orders @relation(fields: [id_order], references:[id])
   product Products @relation(fields: [id_product], references: [id])
 }
+
+model Images {
+  id Int @id @default(autoincrement())
+  image_url String @default("")
+  alt String?
+  product_id Int 
+
+  product Products @relation(fields: [product_id], references: [id])
+}
+
 
 
 
